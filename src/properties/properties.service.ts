@@ -10,8 +10,8 @@ export class PropertiesService {
     @Inject('PROPERTY_REPOSITORY',)
     private propertyRepository: Repository<Property>,
   ) {}
-  create(createPropertyDto: CreatePropertyDto) {
-    return 'This action adds a new property';
+  async create(createPropertyDto: CreatePropertyDto) {
+    return await this.propertyRepository.insert(createPropertyDto);
   }
 
   findAll() {
