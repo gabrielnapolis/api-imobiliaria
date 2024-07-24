@@ -8,18 +8,18 @@ import { User } from './entities/user.entity';
 export class UsersService {
   constructor(
     @Inject('USER_REPOSITORY',)
-    private propertyRepository: Repository<User>,
+    private userRepository: Repository<User>,
   ) {}
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    return this.userRepository.insert(createUserDto);
   }
 
   findAll() {
-    return `This action returns all users`;
+    return this.userRepository.find()
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+    return this.userRepository.findOneByOrFail({id})
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
@@ -27,6 +27,6 @@ export class UsersService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    return this.userRepository.delete(id)
   }
 }
