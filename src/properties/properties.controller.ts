@@ -12,6 +12,11 @@ export class PropertiesController {
     return this.propertiesService.create(createPropertyDto);
   }
 
+  @Post('/find')
+  findProperties(@Body() createPropertyDto: CreatePropertyDto) {
+    return this.propertiesService.create(createPropertyDto);
+  }
+
   @Get()
   findAll() {
     return this.propertiesService.findAll();
