@@ -7,7 +7,7 @@ import { Property } from './entities/property.entity';
 @Injectable()
 export class PropertiesService {
   constructor(
-    @Inject('PROPERTY_REPOSITORY')
+    @Inject('PROPERTY_REPOSITORY',)
     private propertyRepository: Repository<Property>,
   ) {}
   create(createPropertyDto: CreatePropertyDto) {
@@ -24,14 +24,14 @@ export class PropertiesService {
       propertyType,
       minValue,
           maxValue,
-          rooms,
+
         } =args;
     return this.propertyRepository.find({
       where: {
           neighborhood,
           city,
           propertyType,
-          rooms,
+
           isSold:false,
           forRent:false
         
@@ -52,7 +52,7 @@ export class PropertiesService {
            neighborhood,
            city,
            propertyType,
-           rooms,
+  
            isSold:false,
            forRent:false
          
