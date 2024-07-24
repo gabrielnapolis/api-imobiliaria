@@ -1,8 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
-import { UpdatePropertyDto } from './dto/find-property.dto';
-import { Repository } from 'typeorm';
+import { FindPropertyDto } from './dto/find-property.dto';
+import { Between, Repository } from 'typeorm';
 import { Property } from './entities/property.entity';
+import { UpdatePropertyDto } from './dto/update-property.dto';
 
 @Injectable()
 export class PropertiesService {
@@ -17,58 +18,58 @@ export class PropertiesService {
   findAll() {
     return this.propertyRepository.find()
   }
-  findSales(args:any) {
+  findProperty(args:FindPropertyDto) {
    const  {    
     neighborhood,
       city,
       propertyType,
       minValue,
           maxValue,
-
+          forRent,
         } =args;
     return this.propertyRepository.find({
       where: {
           neighborhood,
           city,
           propertyType,
+          isSold:false,
+          forRent,
+          price:Between(minValue,maxValue)
+        
+      },
+  });
+  }
+  findRent() {
 
+     return this.propertyRepository.find({
+       where: {
+           isSold:false,
+           forRent:true
+         
+       },
+   });
+   }
+
+   findForSale() {
+
+    return this.propertyRepository.find({
+      where: {
           isSold:false,
           forRent:false
         
       },
   });
   }
-  findRent(args:any) {
-    const  {    
-     neighborhood,
-       city,
-       propertyType,
-       minValue,
-           maxValue,
-           rooms,
-         } =args;
-     return this.propertyRepository.find({
-       where: {
-           neighborhood,
-           city,
-           propertyType,
-  
-           isSold:false,
-           forRent:false
-         
-       },
-   });
-   }
  
-  findOne(id: number) {
-    return `This action returns a #${id} property`;
+  async findOne(id: number) {
+    return await this.propertyRepository.findOneBy({id})
   }
 
-  update(id: number, updatePropertyDto: UpdatePropertyDto) {
-    return `This action updates a #${id} property`;
+  async update(id: number, updatePropertyDto: UpdatePropertyDto) {
+    return await this.propertyRepository.update(id,updatePropertyDto)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} property`;
+  async remove(id: number) {
+    return await this.propertyRepository.delete(id)
   }
 }
