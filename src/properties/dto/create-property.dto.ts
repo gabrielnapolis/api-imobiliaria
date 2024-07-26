@@ -1,23 +1,25 @@
 export class CreatePropertyDto {
-  
+    
     name: string;
-
+    
     description: string;
+    
+    price: number;
+
+    type: string;
+
+    status: string;
 
     city: string;
   
     state: string;
-    
  
     neighborhood: string;
   
-  
     forRent: boolean;
-  
 
     isSold: boolean;
-  
-
+ 
     propertyType: string;
     
     hvac: boolean;
@@ -36,9 +38,5 @@ export class CreatePropertyDto {
 
     ceilingHeight: number;
    
-    price: number;
-
-
-
 
 }
