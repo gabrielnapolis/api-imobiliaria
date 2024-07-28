@@ -37,6 +37,7 @@ export class PropertiesService {
           price:Between(minValue,maxValue)
         
       },
+      order:{}
   });
   }
   findRent() {

@@ -13,9 +13,10 @@ export class UsersController {
   }
 
   @Post("/login")
-  login(@Body() loginDto: CreateUserDto) {
-    return this.usersService.login(loginDto)
+  login(@Body() {email,password}) {
+    return this.usersService.login(email,password)
   }
+  
   @Get()
   findAll() {
     return this.usersService.findAll();

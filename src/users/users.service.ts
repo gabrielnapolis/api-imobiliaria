@@ -3,33 +3,51 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
+  
   constructor(
-    @Inject('USER_REPOSITORY',)
+    @Inject('USER_REPOSITORY')
     private userRepository: Repository<User>,
+    private jwtService: JwtService,
   ) {}
+
+  async login (email:string,password:string) {
+   const user = await this.userRepository.findOne({where:{email:email}});
+   if(!user){
+     throw new Error("Not Found");
+     
+   }
+   if (user && user.password === password) {
+    const { password, ...result } = user;
+    return {
+      access_token: this.jwtService.sign(result),
+    };
+  } else {
+    throw new Error("Password does not match");
+    
+  }
+   
+  }
   create(createUserDto: CreateUserDto) {
-    return this.userRepository.insert(createUserDto);
+    return this.userRepository.create(createUserDto);
   }
 
-  findAll() {
-    return this.userRepository.find()
+  async findAll(): Promise<User[]> {
+    return this.userRepository.find();
   }
 
-  findOne(id: number) {
-    return this.userRepository.findOneByOrFail({id})
+  async findOne(id: number) : Promise<User> {
+    return this.userRepository.findOne({where:{id:id}});
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    return this.userRepository.update(id,updateUserDto);
   }
 
-  remove(id: number) {
-    return this.userRepository.delete(id)
-  }
-  login(login: any) {
-    //return this.userRepository.delete(id)
+  async remove(id: number) {
+    return this.userRepository.delete(id);
   }
 }
