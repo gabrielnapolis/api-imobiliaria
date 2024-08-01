@@ -8,7 +8,7 @@ import { UpdatePropertyDto } from './dto/update-property.dto';
 @Injectable()
 export class PropertiesService {
   constructor(
-    @Inject('PROPERTY_REPOSITORY',)
+    @Inject('PROPERTY_REPOSITORY')
     private propertyRepository: Repository<Property>,
   ) {}
   async create(createPropertyDto: CreatePropertyDto) {
@@ -16,61 +16,56 @@ export class PropertiesService {
   }
 
   findAll() {
-    return this.propertyRepository.find()
+    return this.propertyRepository.find();
   }
-  findProperty(args:FindPropertyDto) {
-   const  {    
-    neighborhood,
+  findProperty(args: FindPropertyDto) {
+    const {
+      neighborhood,
       city,
       propertyType,
       minValue,
-          maxValue,
-          forRent,
-        } =args;
+      maxValue,
+      // forRent,
+    } = args;
     return this.propertyRepository.find({
       where: {
-          neighborhood,
-          city,
-          propertyType,
-          isSold:false,
-          forRent,
-          price:Between(minValue,maxValue)
-        
+        neighborhood,
+        city,
+        propertyType,
+        // isSold:false,
+        // forRent,
+        price: Between(minValue, maxValue),
       },
-      order:{}
-  });
+      order: {},
+    });
   }
   findRent() {
-
-     return this.propertyRepository.find({
-       where: {
-           isSold:false,
-           forRent:true
-         
-       },
-   });
-   }
-
-   findForSale() {
-
     return this.propertyRepository.find({
       where: {
-          isSold:false,
-          forRent:false
-        
+        //  isSold:false,
+        //  forRent:true
       },
-  });
+    });
   }
- 
+
+  findForSale() {
+    return this.propertyRepository.find({
+      where: {
+        // isSold:false,
+        // forRent:false
+      },
+    });
+  }
+
   async findOne(id: number) {
-    return await this.propertyRepository.findOneBy({id})
+    return await this.propertyRepository.findOneBy({ id });
   }
 
   async update(id: number, updatePropertyDto: UpdatePropertyDto) {
-    return await this.propertyRepository.update(id,updatePropertyDto)
+    return await this.propertyRepository.update(id, updatePropertyDto);
   }
 
   async remove(id: number) {
-    return await this.propertyRepository.delete(id)
+    return await this.propertyRepository.delete(id);
   }
 }

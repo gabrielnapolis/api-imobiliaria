@@ -6,15 +6,25 @@ export class FindPropertyDto {
 
   description: string;
 
+  price: number;
+
+  status: string;
+
   city: string;
 
   state: string;
 
   neighborhood: string;
 
-  forRent: boolean;
+  streetAdress: string;
 
-  isSold: boolean;
+  mts: number;
+
+  bed: number;
+
+  bath: number;
+
+  kitchen: number;
 
   propertyType: string;
 
@@ -34,7 +44,19 @@ export class FindPropertyDto {
 
   ceilingHeight: number;
 
-  price: number;
+  constructionYear: number;
+
+  security: string;
+
+  pcdAccess: boolean;
+
+  furnished: boolean;
+
+  wifi: boolean;
+
+  petAllowed: boolean;
+
   minValue: number;
+
   maxValue: number;
 }

@@ -8,7 +8,7 @@ import { AuthModule } from './auth/auth.module';
 
 
 @Module({
-  imports: [PropertiesModule, DatabaseModule,AuthModule],
+  imports: [PropertiesModule, DatabaseModule],
   controllers: [AppController],
   providers: [AppService],
 })

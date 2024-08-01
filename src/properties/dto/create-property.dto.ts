@@ -1,42 +1,55 @@
 export class CreatePropertyDto {
-    
-    name: string;
-    
-    description: string;
-    
-    price: number;
+  name: string;
 
-    type: string;
+  description: string;
 
-    status: string;
+  price: number;
 
-    city: string;
-  
-    state: string;
- 
-    neighborhood: string;
-  
-    forRent: boolean;
+  status: string;
 
-    isSold: boolean;
- 
-    propertyType: string;
-    
-    hvac: boolean;
+  city: string;
 
-    garages: number;
+  state: string;
 
-    garden: boolean;
+  neighborhood: string;
 
-    playground: boolean;
-  
-    elevator: boolean;
-   
-    swimmimgpool: boolean;
-  
-    parking: boolean;
+  streetAdress: string;
 
-    ceilingHeight: number;
-   
+  mts: number;
 
+  bed: number;
+
+  bath: number;
+
+  kitchen: number;
+
+  propertyType: string;
+
+  hvac: boolean;
+
+  garages: number;
+
+  garden: boolean;
+
+  playground: boolean;
+
+  elevator: boolean;
+
+  swimmimgpool: boolean;
+
+  parking: boolean;
+
+  ceilingHeight: number;
+
+  constructionYear: number;
+
+  security: string;
+
+  pcdAccess: boolean;
+
+  furnished: boolean;
+
+  wifi: boolean;
+
+  petAllowed: boolean;
 }
