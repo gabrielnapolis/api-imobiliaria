@@ -52,4 +52,8 @@ export class CreatePropertyDto {
   wifi: boolean;
 
   petAllowed: boolean;
+
+  gym: boolean;
+
+  grill: boolean;
 }

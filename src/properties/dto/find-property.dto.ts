@@ -56,6 +56,10 @@ export class FindPropertyDto {
 
   petAllowed: boolean;
 
+  gym: boolean;
+
+  grill: boolean;
+
   minValue: number;
 
   maxValue: number;

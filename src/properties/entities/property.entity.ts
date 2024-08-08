@@ -85,4 +85,10 @@ export class Property {
 
   @Column()
   petAllowed: boolean;
+
+  @Column()
+  gym: boolean;
+
+  @Column()
+  grill: boolean;
 }
