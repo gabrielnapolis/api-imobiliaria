@@ -20,9 +20,9 @@ export class FindPropertyDto {
 
   mts: number;
 
-  bed: number;
+  selectedBedrooms: number;
 
-  bath: number;
+  selectedBathrooms: number;
 
   kitchen: number;
 
@@ -58,5 +58,5 @@ export class FindPropertyDto {
 
   minValue: number;
 
-  maxValue: number;
+  maxPrice: number;
 }
