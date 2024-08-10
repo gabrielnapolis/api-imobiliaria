@@ -24,6 +24,9 @@ export class Property {
   propertyType: string;
 
   @Column('text')
+  classification: string;
+
+  @Column('text')
   city: string;
   
   @Column('text')

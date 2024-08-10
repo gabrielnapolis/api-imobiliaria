@@ -28,6 +28,8 @@ export class FindPropertyDto {
 
   propertyType: string;
 
+  classification: string;
+
   hvac: boolean;
 
   garages: number;
