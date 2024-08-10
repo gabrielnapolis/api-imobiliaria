@@ -28,6 +28,8 @@ export class FindPropertyDto {
 
   propertyType: string;
 
+  classification: string;
+
   hvac: boolean;
 
   garages: number;
@@ -55,6 +57,10 @@ export class FindPropertyDto {
   wifi: boolean;
 
   petAllowed: boolean;
+
+  gym: boolean;
+
+  grill: boolean;
 
   minValue: number;
 

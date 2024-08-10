@@ -25,6 +25,8 @@ export class CreatePropertyDto {
 
   propertyType: string;
 
+  classification: string;
+
   hvac: boolean;
 
   garages: number;
@@ -52,4 +54,8 @@ export class CreatePropertyDto {
   wifi: boolean;
 
   petAllowed: boolean;
+
+  gym: boolean;
+
+  grill: boolean;
 }

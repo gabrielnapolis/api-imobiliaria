@@ -24,6 +24,9 @@ export class Property {
   propertyType: string;
 
   @Column('text')
+  classification: string;
+
+  @Column('text')
   city: string;
   
   @Column('text')
@@ -85,4 +88,10 @@ export class Property {
 
   @Column()
   petAllowed: boolean;
+
+  @Column()
+  gym: boolean;
+
+  @Column()
+  grill: boolean;
 }
