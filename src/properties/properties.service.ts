@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
 import { FindPropertyDto } from './dto/find-property.dto';
-import { Between, LessThanOrEqual, MoreThanOrEqual, Repository } from 'typeorm';
+import { Between, LessThanOrEqual, Like, MoreThanOrEqual, Repository } from 'typeorm';
 import { Property } from './entities/property.entity';
 import { UpdatePropertyDto } from './dto/update-property.dto';
 
@@ -19,8 +19,9 @@ export class PropertiesService {
     return this.propertyRepository.find();
   }
  async findProperty(args: FindPropertyDto) {
-    const {
+    let {
     //  search,
+      search,
       neighborhood,
       city,
       selectedBedrooms,
@@ -36,8 +37,14 @@ export class PropertiesService {
       // forRent,
     } = args;
     console.log(args)
+    if(!mts) mts=1
+    if(!maxPrice) mts=100000000
+    if(!selectedBathrooms) selectedBathrooms=1
+    if(!selectedBedrooms) selectedBedrooms=1
     let result=await this.propertyRepository.find({
       where: {
+    //    description:Like(search),
+  //      name:Like(search),
         city,
         bed:MoreThanOrEqual(selectedBedrooms),
         bath: MoreThanOrEqual(selectedBathrooms),

@@ -2,9 +2,7 @@ import { PartialType } from '@nestjs/mapped-types';
 import { CreatePropertyDto } from './create-property.dto';
 
 export class FindPropertyDto {
-  name: string;
-
-  description: string;
+  search:string;
 
   price: number;
 
