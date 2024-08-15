@@ -1,5 +1,5 @@
 
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class CreateUserDto {
@@ -9,4 +9,8 @@ export class CreateUserDto {
     email:string
 
     password:string
+
+    cpf: string;
+
+    isAdmin: boolean;
 }
