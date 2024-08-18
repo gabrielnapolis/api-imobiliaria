@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { PropertiesService } from './properties.service';
 import { CreatePropertyDto } from './dto/create-property.dto';
 import { FindPropertyDto } from './dto/find-property.dto';
 import { UpdatePropertyDto } from './dto/update-property.dto';
+import { FileInterceptor } from '@nestjs/platform-express/multer';
+
 
 @Controller('properties')
 export class PropertiesController {
@@ -36,5 +38,11 @@ export class PropertiesController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.propertiesService.remove(+id);
+  }
+
+  @Post("/image")
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log(file);
   }
 }

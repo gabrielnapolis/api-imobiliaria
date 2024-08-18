@@ -20,6 +20,7 @@ export class PropertiesService {
         }
 
         const form = formidable(options);
+        console.log(req)
 
         form.parse(req, (err, fields, files) => {});
     })

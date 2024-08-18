@@ -94,4 +94,7 @@ export class Property {
 
   @Column()
   grill: boolean;
+
+  @Column()
+  floors: number;
 }
