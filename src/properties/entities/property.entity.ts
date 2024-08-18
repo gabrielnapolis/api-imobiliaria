@@ -97,4 +97,8 @@ export class Property {
 
   @Column()
   floors: number;
+
+  @Column('text')
+  googleMapUrl: string;
+
 }
