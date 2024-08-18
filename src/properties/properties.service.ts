@@ -31,9 +31,10 @@ export class PropertiesService {
   async create(createPropertyDto: CreatePropertyDto) {
     return await this.propertyRepository.insert(createPropertyDto);
   }
-  async savePhoto(photoDto: {property:number,path:string}) {
-
-   // return await this.photoRepository.insert(photoDto);
+  async savePhoto( propertyId:number, path:string) {
+    let property = await this.propertyRepository.findOneBy({id:propertyId});
+    const photoDto={path:path,property:property}
+   return await this.photoRepository.insert(photoDto);
   }
 
   findAll() {
@@ -134,5 +135,9 @@ export class PropertiesService {
 
   async remove(id: number) {
     return await this.propertyRepository.delete(id);
+  }
+
+  async removePhoto(id: number) {
+    return await this.photoRepository.delete(id);
   }
 }
