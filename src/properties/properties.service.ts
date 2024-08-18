@@ -5,11 +5,14 @@ import { Between, LessThanOrEqual, Like, MoreThanOrEqual, Repository } from 'typ
 import { Property } from './entities/property.entity';
 import { UpdatePropertyDto } from './dto/update-property.dto';
 import formidable, {errors as formidableErrors} from 'formidable';
+import { Photo } from './entities/photo.entity';
 @Injectable()
 export class PropertiesService {
   constructor(
     @Inject('PROPERTY_REPOSITORY')
     private propertyRepository: Repository<Property>,
+    @Inject('PROPERTY_PHOTO_REPOSITORY')
+    private photoRepository: Repository<Photo>,
   ) {}
 
    parsefile = async (req) => {
@@ -27,6 +30,10 @@ export class PropertiesService {
 }
   async create(createPropertyDto: CreatePropertyDto) {
     return await this.propertyRepository.insert(createPropertyDto);
+  }
+  async savePhoto(photoDto: {property:number,path:string}) {
+
+   // return await this.photoRepository.insert(photoDto);
   }
 
   findAll() {
@@ -90,7 +97,9 @@ export class PropertiesService {
         petAllowed,
         status,
         price:LessThanOrEqual(maxPrice),
-      },
+      }, relations: {
+        photos: true,
+    },
     //  order: {},
     });
     console.log("findProperty result",result)

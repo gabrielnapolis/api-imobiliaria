@@ -58,4 +58,10 @@ export class CreatePropertyDto {
   gym: boolean;
 
   grill: boolean;
+
+
+  floors: number;
+
+
+  googleMapUrl: string;
 }

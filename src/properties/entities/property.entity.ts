@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Photo } from './photo.entity';
 
 @Entity()
 export class Property {
@@ -100,5 +101,10 @@ export class Property {
 
   @Column('text')
   googleMapUrl: string;
+
+
+  
+  @OneToMany(() => Photo, (photo) => photo.property)
+  photos: Photo[]
 
 }
