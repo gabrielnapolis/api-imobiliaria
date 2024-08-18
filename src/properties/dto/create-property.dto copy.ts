@@ -1,11 +1,10 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreatePropertyDto } from './create-property.dto';
+export class CreatePropertyDto {
+  name: string;
 
-export class FindPropertyDto {
-  search:string;
+  description: string;
 
   price: number;
-  location:string;
+
   status: string;
 
   city: string;
@@ -18,9 +17,9 @@ export class FindPropertyDto {
 
   mts: number;
 
-  selectedBedrooms: number;
+  bed: number;
 
-  selectedBathrooms: number;
+  bath: number;
 
   kitchen: number;
 
@@ -59,8 +58,4 @@ export class FindPropertyDto {
   gym: boolean;
 
   grill: boolean;
-
-  minPrice: number;
-
-  maxPrice: number;
 }
