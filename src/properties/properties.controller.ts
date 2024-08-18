@@ -40,10 +40,10 @@ export class PropertiesController {
     return this.propertiesService.remove(+id);
   }
 
-  @Post("/image")
+  @Post("/image/:id")
   @UseInterceptors(FileInterceptor('file'))
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-    //this.propertiesService.savePhoto()
+  uploadFile(@UploadedFile() file: Express.Multer.File,@Param('id') id: number) {
+    this.propertiesService.savePhoto(id,file.path)
     console.log(file);
   }
   @Delete('/photo/:id')
