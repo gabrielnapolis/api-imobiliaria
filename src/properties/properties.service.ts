@@ -38,7 +38,9 @@ export class PropertiesService {
   }
 
   findAll() {
-    return this.propertyRepository.find();
+    return this.propertyRepository.find({relations: {
+      photos: true,
+  }});
   }
  async findProperty(args: FindPropertyDto) {
     let {
@@ -126,7 +128,9 @@ export class PropertiesService {
   }
 
   async findOne(id: number) {
-    return await this.propertyRepository.findOneBy({ id });
+    return await this.propertyRepository.findOne({ where:{id},relations: {
+      photos: true,
+  } });
   }
 
   async update(id: number, updatePropertyDto: UpdatePropertyDto) {
