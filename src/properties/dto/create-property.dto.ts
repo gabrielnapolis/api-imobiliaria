@@ -19,6 +19,8 @@ export class CreatePropertyDto {
 
   bed: number;
 
+  suite: number;
+
   bath: number;
 
   kitchen: number;
@@ -59,9 +61,7 @@ export class CreatePropertyDto {
 
   grill: boolean;
 
-
   floors: number;
-
 
   googleMapUrl: string;
 }
