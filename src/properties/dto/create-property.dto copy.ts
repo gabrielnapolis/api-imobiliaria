@@ -1,4 +1,4 @@
-export class CreatePropertyDto {
+export class CreatePhotoDto {
   name: string;
 
   description: string;

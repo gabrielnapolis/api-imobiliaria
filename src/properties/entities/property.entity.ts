@@ -20,7 +20,7 @@ export class Property {
   
   @Column()
   constructionYear: number;
-  
+
   @Column('text')
   propertyType: string;
 
@@ -44,6 +44,12 @@ export class Property {
 
   @Column()
   bed: number;
+
+  @Column({
+
+    nullable: true,
+})
+  suite: number;
 
   @Column()
   bath: number;
