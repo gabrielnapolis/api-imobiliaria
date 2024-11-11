@@ -139,8 +139,8 @@ export class PropertiesService {
 
   async remove(id: number) {
     let propetyPhotos = await this.photoRepository.findBy({id});
-    propetyPhotos.forEach(photo=> {
-      this.removePhoto(photo.id)
+    propetyPhotos.forEach(async photo=> {
+     await this.removePhoto(photo.id)
     });
     return await this.propertyRepository.delete(id);
   }
