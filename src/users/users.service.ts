@@ -14,7 +14,7 @@ export class UsersService {
   ) {}
 
   async login(email: string, password: string) {
-    const user = await this.userRepository.findOne({ where: { email: email } });
+    const user = await this.userRepository.findOne({ where: { email: email.toLowerCase() } });
     if (!user) {
       throw new Error('Not Found');
     }
@@ -29,6 +29,7 @@ export class UsersService {
   }
 
   create(createUserDto: CreateUserDto) {
+    createUserDto.email = createUserDto.email.toLowerCase();
     return this.userRepository.insert(createUserDto);
   }
 
