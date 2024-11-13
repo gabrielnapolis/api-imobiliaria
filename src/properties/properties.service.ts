@@ -6,6 +6,7 @@ import { Property } from './entities/property.entity';
 import { UpdatePropertyDto } from './dto/update-property.dto';
 import formidable, {errors as formidableErrors} from 'formidable';
 import { Photo } from './entities/photo.entity';
+import * as fs from 'fs'; 
 @Injectable()
 export class PropertiesService {
   constructor(
@@ -130,7 +131,7 @@ export class PropertiesService {
   async findOne(id: number) {
     return await this.propertyRepository.findOne({ where:{id},relations: {
       photos: true,
-  } });
+    }});
   }
 
   async update(id: number, updatePropertyDto: UpdatePropertyDto) {
@@ -138,14 +139,25 @@ export class PropertiesService {
   }
 
   async remove(id: number) {
-    let propetyPhotos = await this.photoRepository.findBy({id});
-    propetyPhotos.forEach(async photo=> {
-     await this.removePhoto(photo.id)
+    let propetyPhotos = await this.photoRepository.findBy({
+      property: { id: id },
+    });
+    propetyPhotos.forEach(async (photo) => {
+      await this.removePhoto(photo.id);
+      this.removeFromDisk(photo.path);
     });
     return await this.propertyRepository.delete(id);
   }
 
   async removePhoto(id: number) {
+    let photo = await this.photoRepository.findOneBy({id})
+    this.removeFromDisk(photo.path);
     return await this.photoRepository.delete(id);
+  }
+
+  removeFromDisk(path: string){
+    fs.unlink('./uploads/' + path, (err => {
+        if (err) console.log(err);
+      }));
   }
 }
